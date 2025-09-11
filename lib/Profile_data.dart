@@ -21,22 +21,27 @@ class ProfileDataScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 40),
+                      // ---------------- Profile Image ----------------
                       Stack(
                         alignment: Alignment.bottomRight,
                         children: [
-                          const CircleAvatar(
+                          CircleAvatar(
                             radius: 50,
-                            backgroundColor: Colors.grey,
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: AssetImage(
+                              'assets/images/profile1.png',
+                            ),
                           ),
+
                           Positioned(
                             bottom: 4,
                             right: 4,
                             child: Container(
                               height: 28,
                               width: 28,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color(0xFFA2B2FC),
                                     Color(0xFFFFF1BE),
@@ -44,6 +49,13 @@ class ProfileDataScreen extends StatelessWidget {
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 4,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
                               ),
                               child: const Center(
                                 child: Icon(
@@ -56,7 +68,11 @@ class ProfileDataScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+
                       const SizedBox(height: 40),
+                      const SizedBox(height: 40),
+
+                      // ---------------- Input Fields ----------------
                       const CustomTextField(hint: "Enter your name"),
                       const SizedBox(height: 16),
                       const CustomTextField(hint: "Enter your nickname"),
@@ -73,20 +89,37 @@ class ProfileDataScreen extends StatelessWidget {
                         obscureText: true,
                       ),
                       const SizedBox(height: 40),
+
+                      // ---------------- Continue Button with Gradient ----------------
                       SizedBox(
                         width: double.infinity,
                         height: 48,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey[400],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [Color(0xFFA2B2FC), Color(0xFFFFF1BE)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
                             ),
+                            borderRadius: BorderRadius.circular(24),
                           ),
-                          onPressed: () {},
-                          child: const Text(
-                            "Continue",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              "Continue",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -95,6 +128,8 @@ class ProfileDataScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            // ---------------- Home Indicator ----------------
             Padding(
               padding: const EdgeInsets.only(bottom: 8, top: 4),
               child: Center(
