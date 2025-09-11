@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'profile_data.dart'; // yeh import zaroor karna
 
 class GenreSelectionScreen extends StatefulWidget {
   const GenreSelectionScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _GenreSelectionScreenState createState() => _GenreSelectionScreenState();
 }
 
 class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
   List<String> selectedGenres = [];
 
- 
   final List<Map<String, dynamic>> genres = [
     {'label': 'Action', 'image': 'assets/images/action.png'},
     {'label': 'Romance', 'image': 'assets/images/romance.png'},
@@ -34,18 +33,20 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 20),
-            Text("Let Us Know!",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
+              "Let Us Know!",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            const Text(
               "Choose your genre to find\nfavorite titles here!",
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: GridView.count(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 crossAxisCount: 3,
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
@@ -64,7 +65,7 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         gradient: isSelected
-                            ? LinearGradient(
+                            ? const LinearGradient(
                                 colors: [Color(0xFFA2B2FC), Color(0xFFFFF1BE)],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
@@ -81,9 +82,8 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                             genre['image'],
                             width: 32,
                             height: 32,
-                          
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             genre['label'],
                             style: TextStyle(
@@ -103,23 +103,42 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      print("Selected genres: $selectedGenres");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileDataScreen(),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFA2B2FC),
-                      minimumSize: Size(double.infinity, 48),
+                      backgroundColor: const Color(0xFFA2B2FC),
+                      minimumSize: const Size(double.infinity, 48),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
                     ),
-                    child: Text("Continue", style: TextStyle(color: Colors.white)),
+                    child: const Text(
+                      "Continue",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   TextButton(
-                    onPressed: () {},
-                    child: Text("Skip for now", style: TextStyle(color: Colors.grey)),
-                  )
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileDataScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Skip for now",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
