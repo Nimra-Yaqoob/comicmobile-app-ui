@@ -23,13 +23,11 @@ class DashboardScreen extends StatelessWidget {
               child: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Color(0xFFA2B2FC), Color(0xFFFFF1BE)],
+                    colors: [Color(0xFF6094EA), Color(0xFFF02FC2)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(28),
-                  ),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,10 +39,22 @@ class DashboardScreen extends StatelessWidget {
                           children: [
                             ReadersList(
                               readers: [
-                                {"name": "minato_n", "image": "assets/images/user1.png"},
-                                {"name": "meliod4s", "image": "assets/images/user2.png"},
-                                {"name": "el_pudgo", "image": "assets/images/user3.png"},
-                                {"name": "resler01", "image": "assets/images/user4.png"},
+                                {
+                                  "name": "minato_n",
+                                  "image": "assets/images/user1.png",
+                                },
+                                {
+                                  "name": "meliod4s",
+                                  "image": "assets/images/user2.png",
+                                },
+                                {
+                                  "name": "el_pudgo",
+                                  "image": "assets/images/user3.png",
+                                },
+                                {
+                                  "name": "resler01",
+                                  "image": "assets/images/user4.png",
+                                },
                               ],
                             ),
                             const ContinueReading(),

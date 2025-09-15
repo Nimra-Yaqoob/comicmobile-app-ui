@@ -50,51 +50,57 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                 crossAxisCount: 3,
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
-                children: genres.map((genre) {
-                  bool isSelected = selectedGenres.contains(genre['label']);
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (isSelected) {
-                          selectedGenres.remove(genre['label']);
-                        } else {
-                          selectedGenres.add(genre['label']);
-                        }
-                      });
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: isSelected
-                            ? const LinearGradient(
-                                colors: [Color(0xFFA2B2FC), Color(0xFFFFF1BE)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              )
-                            : null,
-                        color: isSelected ? null : Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.grey.shade300),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            genre['image'],
-                            width: 32,
-                            height: 32,
+                children:
+                    genres.map((genre) {
+                      bool isSelected = selectedGenres.contains(genre['label']);
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (isSelected) {
+                              selectedGenres.remove(genre['label']);
+                            } else {
+                              selectedGenres.add(genre['label']);
+                            }
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient:
+                                isSelected
+                                    ? const LinearGradient(
+                                      colors: [
+                                        Color(0xFF6094EA),
+                                        Color(0xFFF02FC2),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    )
+                                    : null,
+                            color: isSelected ? null : Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: Colors.grey.shade300),
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            genre['label'],
-                            style: TextStyle(
-                              color: isSelected ? Colors.white : Colors.black,
-                            ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                genre['image'],
+                                width: 32,
+                                height: 32,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                genre['label'],
+                                style: TextStyle(
+                                  color:
+                                      isSelected ? Colors.white : Colors.black,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
+                        ),
+                      );
+                    }).toList(),
               ),
             ),
             Padding(
@@ -111,7 +117,7 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA2B2FC),
+                      backgroundColor: const Color(0xFF6094EA),
                       minimumSize: const Size(double.infinity, 48),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24),

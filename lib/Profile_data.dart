@@ -21,6 +21,7 @@ class ProfileDataScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 40),
+
                       // ---------------- Profile Image ----------------
                       Stack(
                         alignment: Alignment.bottomRight,
@@ -32,7 +33,6 @@ class ProfileDataScreen extends StatelessWidget {
                               'assets/images/profile1.png',
                             ),
                           ),
-
                           Positioned(
                             bottom: 4,
                             right: 4,
@@ -43,8 +43,8 @@ class ProfileDataScreen extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 gradient: const LinearGradient(
                                   colors: [
-                                    Color(0xFFA2B2FC),
-                                    Color(0xFFFFF1BE),
+                                    Color(0xFF6094EA),
+                                    Color(0xFFF02FC2),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -70,7 +70,6 @@ class ProfileDataScreen extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 40),
-                      const SizedBox(height: 40),
 
                       // ---------------- Input Fields ----------------
                       const CustomTextField(hint: "Enter your name"),
@@ -81,12 +80,12 @@ class ProfileDataScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       const CustomTextField(
                         hint: "Make a password",
-                        obscureText: true,
+                        obscureText: true, // shows ****
                       ),
                       const SizedBox(height: 16),
                       const CustomTextField(
                         hint: "Confirm password",
-                        obscureText: true,
+                        obscureText: true, // shows ****
                       ),
                       const SizedBox(height: 40),
 
@@ -97,7 +96,7 @@ class ProfileDataScreen extends StatelessWidget {
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
-                              colors: [Color(0xFFA2B2FC), Color(0xFFFFF1BE)],
+                              colors: [Color(0xFF6094EA), Color(0xFFF02FC2)],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
@@ -129,7 +128,7 @@ class ProfileDataScreen extends StatelessWidget {
               ),
             ),
 
-            // ---------------- Home Indicator ----------------
+            // ---------------- Bottom Profile Indicator ----------------
             Padding(
               padding: const EdgeInsets.only(bottom: 8, top: 4),
               child: Center(

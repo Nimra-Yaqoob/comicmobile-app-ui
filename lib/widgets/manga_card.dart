@@ -9,7 +9,7 @@ class MangaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100, // 👈 fixed width so cards align nicely
+      width: 100,
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -19,7 +19,7 @@ class MangaCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
               imagePath,
-              height: 110, // 👈 smaller than parent (150)
+              height: 110,
               width: 100,
               fit: BoxFit.cover,
             ),
@@ -36,7 +36,7 @@ class MangaCard extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),
-              maxLines: 1, // 👈 prevent long titles from breaking
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
             ),

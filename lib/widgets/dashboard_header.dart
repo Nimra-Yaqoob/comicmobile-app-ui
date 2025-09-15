@@ -26,7 +26,7 @@ class DashboardHeader extends StatelessWidget {
                   height: 16,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0xFFA2B2FC), Color(0xFFFFF1BE)],
+                      colors: [Color(0xFF6094EA), Color(0xFFF02FC2)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),

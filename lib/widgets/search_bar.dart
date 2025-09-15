@@ -1,3 +1,4 @@
+import 'package:comic_moobile/All_Manga_Screen.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -32,11 +33,19 @@ class SearchBarWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Image.asset(
-              'assets/images/three_icon.png',
-              width: 24,
-              height: 24,
-              color: Colors.grey,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MangaScreen()),
+                );
+              },
+              child: Image.asset(
+                'assets/images/three_icon.png',
+                width: 24,
+                height: 24,
+                color: Colors.grey,
+              ),
             ),
           ],
         ),
