@@ -56,6 +56,8 @@ class MangaScreen extends StatelessWidget {
     },
   ];
 
+  MangaScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

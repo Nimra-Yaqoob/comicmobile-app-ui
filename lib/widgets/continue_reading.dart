@@ -6,12 +6,12 @@ class ContinueReading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10), // 👈 thoda kam padding
+      padding: const EdgeInsets.all(10),
       child: Stack(
         alignment: Alignment.center,
         children: [
           Container(
-            height: 130, // 👈 height kam
+            height: 130,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(14),
@@ -25,7 +25,6 @@ class ContinueReading extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 👇 space kam
               Padding(
                 padding: const EdgeInsets.only(bottom: 4),
                 child: Center(
@@ -52,7 +51,7 @@ class ContinueReading extends StatelessWidget {
 
               Center(
                 child: Container(
-                  height: 65, // 👈 kam kiya
+                  height: 65,
                   margin: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     color: Colors.white,
