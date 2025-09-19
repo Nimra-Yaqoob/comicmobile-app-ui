@@ -32,7 +32,6 @@ class MangaDetailPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // 🔥 Gradient + Cover Image Header
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -54,7 +53,7 @@ class MangaDetailPage extends StatelessWidget {
                     topRight: Radius.circular(20),
                   ),
                   child: Image.asset(
-                    image, // 👈 dynamic image
+                    image,
                     height: 180,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -69,7 +68,7 @@ class MangaDetailPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        title, // 👈 dynamic title
+                        title, // dynamic
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -96,7 +95,7 @@ class MangaDetailPage extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          // 🔥 Tabs Section
+          // Tabs Section
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),
             padding: const EdgeInsets.all(6),
@@ -146,7 +145,6 @@ class MangaDetailPage extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // 🔥 Scrollable Content
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
@@ -220,7 +218,6 @@ class MangaDetailPage extends StatelessWidget {
 
                     const SizedBox(height: 20),
 
-                    // 🔥 Read Now Button
                     Center(
                       child: ElevatedButton(
                         onPressed: () {},
@@ -249,7 +246,6 @@ class MangaDetailPage extends StatelessWidget {
             ),
           ),
 
-          // 🔥 Bottom Home Indicator
           Padding(
             padding: const EdgeInsets.only(bottom: 8, top: 4),
             child: Center(

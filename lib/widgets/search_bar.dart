@@ -1,4 +1,4 @@
-import 'package:comic_moobile/All_Manga_Screen.dart';
+import 'package:comic_moobile/SearchFilter.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -35,9 +35,11 @@ class SearchBarWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MangaScreen()),
+                showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  isScrollControlled: true,
+                  builder: (context) => SearchFilterSheet(),
                 );
               },
               child: Image.asset(

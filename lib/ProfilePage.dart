@@ -9,6 +9,8 @@ class ProfilePage extends StatelessWidget {
     {'title': 'Boruto', 'image': 'assets/images/rezero.png'},
   ];
 
+  ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,6 @@ class ProfilePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // 🔥 Stylish Profile Header
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
@@ -88,7 +89,6 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
 
-            // 🔥 Stats Section
             Container(
               color: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -105,7 +105,6 @@ class ProfilePage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // 🔥 Reviews Title
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
@@ -117,7 +116,6 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
 
-            // 🔥 Reviews Grid
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -189,8 +187,6 @@ class ProfilePage extends StatelessWidget {
                 );
               },
             ),
-
-            // 🔥 Bottom Home Indicator
             Padding(
               padding: const EdgeInsets.only(bottom: 8, top: 4),
               child: Center(
