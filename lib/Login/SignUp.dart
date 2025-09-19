@@ -8,6 +8,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -20,12 +21,12 @@ class _SignupScreenState extends State<SignupScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/sign.jpg'), // your comic BG
+                image: AssetImage('assets/images/sign.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          // Overlay for readability
+          // Dark overlay
           Container(color: Colors.black.withOpacity(0.4)),
           Center(
             child: SingleChildScrollView(
@@ -53,94 +54,99 @@ class _SignupScreenState extends State<SignupScreen> {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 40),
-                    // Email field
-                    TextField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        filled: true,
-                        fillColor: Colors.deepPurpleAccent.withOpacity(0.7),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      style: TextStyle(color: Colors.white),
+
+                    // Username field
+                    _buildTextField(
+                      controller: _usernameController,
+                      hintText: 'Username',
                     ),
+
                     SizedBox(height: 20),
+
+                    // Email field
+                    _buildTextField(
+                      controller: _emailController,
+                      hintText: 'Email',
+                    ),
+
+                    SizedBox(height: 20),
+
                     // Password field
-                    TextField(
+                    _buildTextField(
                       controller: _passwordController,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        filled: true,
-                        fillColor: Colors.deepPurpleAccent.withOpacity(0.7),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      style: TextStyle(color: Colors.white),
+                      hintText: 'Password',
                       obscureText: true,
                     ),
+
                     SizedBox(height: 30),
-                    // Sign Up button
-                    ElevatedButton(
-                      onPressed: () {
-                        String email = _emailController.text;
-                        String password = _passwordController.text;
-                        print("Sign Up: $email, $password");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orangeAccent,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 60,
-                          vertical: 15,
+
+                    // Gradient Sign Up button
+                    SizedBox(
+                      width: 220,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                         ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        textStyle: TextStyle(
-                          fontFamily: 'ComicSansMS',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        onPressed: () {
+                          String username = _usernameController.text;
+                          String email = _emailController.text;
+                          String password = _passwordController.text;
+                          print("Sign Up: $username, $email, $password");
+                        },
+                        child: Ink(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Color(0xFF6094EA), Color(0xFFF02FC2)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                fontFamily: 'ComicSansMS',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      child: Text('Sign Up'),
                     ),
+
                     SizedBox(height: 20),
-                    // Social login icons only
+
+                    // Social login icons with gradient outline
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _socialIconButton(
-                          icon: Icons.apple,
-                          color: Colors.black,
-                          onTap: () {},
-                        ),
+                        _gradientOutlineIconButton(Icons.apple, [
+                          Color(0xFF6094EA),
+                          Color(0xFFF02FC2),
+                        ]),
                         SizedBox(width: 20),
-                        _socialIconButton(
-                          icon: Icons.g_mobiledata,
-                          color: Colors.white,
-                          onTap: () {},
-                        ),
+                        _gradientOutlineIconButton(Icons.g_mobiledata, [
+                          Color(0xFF6094EA),
+                          Color(0xFFF02FC2),
+                        ]),
                         SizedBox(width: 20),
-                        _socialIconButton(
-                          icon: Icons.facebook,
-                          color: Colors.blue,
-                          onTap: () {},
-                        ),
+                        _gradientOutlineIconButton(Icons.facebook, [
+                          Color(0xFF6094EA),
+                          Color(0xFFF02FC2),
+                        ]),
                       ],
                     ),
+
                     SizedBox(height: 20),
+
                     // Login redirect
                     TextButton(
                       onPressed: () {
@@ -165,31 +171,51 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _socialIconButton({
-    required IconData icon,
-    required Color color,
-    required VoidCallback onTap,
+  // Purple style TextField
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String hintText,
+    bool obscureText = false,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.yellowAccent, width: 2),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black45,
-              offset: Offset(2, 2),
-              blurRadius: 4,
-            ),
-          ],
+    return TextField(
+      controller: controller,
+      obscureText: obscureText,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: TextStyle(color: Colors.white70),
+        filled: true,
+        fillColor: Colors.deepPurpleAccent.withOpacity(0.7),
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide.none,
         ),
-        child: Icon(
-          icon,
-          color: color == Colors.white ? Colors.black : Colors.white,
-          size: 30,
+      ),
+    );
+  }
+
+  // Social icon with thin gradient outline
+  Widget _gradientOutlineIconButton(IconData icon, List<Color> gradientColors) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          colors: gradientColors,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(3), // thickness of gradient border
+        child: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.black.withOpacity(0.7), // inner circle
+          ),
+          child: Icon(icon, color: Colors.white, size: 28),
         ),
       ),
     );

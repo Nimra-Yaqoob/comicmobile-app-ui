@@ -32,111 +32,109 @@ class _LoginScreenState extends State<LoginScreen> {
           // Dark overlay for contrast
           Container(color: Colors.black.withOpacity(0.6)),
 
-          // Login card
+          // Centered login form
           Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.3), // <-- transparent
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 15,
-                      offset: Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      "Welcome Back!",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueAccent,
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-
-                    // Email Field
-                    _buildTextField(
-                      controller: _emailController,
-                      hintText: "Email",
-                      icon: Icons.email_outlined,
-                    ),
-                    const SizedBox(height: 16),
-
-                    // Password Field
-                    _buildTextField(
-                      controller: _passwordController,
-                      hintText: "Password",
-                      icon: Icons.lock_outline,
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 24),
-
-                    // Gradient Login Button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Title
+                  const Text(
+                    "Welcome Back!",
+                    style: TextStyle(
+                      fontFamily: 'ComicSansMS',
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.yellowAccent,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 4.0,
+                          color: Colors.black54,
+                          offset: Offset(2, 2),
                         ),
-                        onPressed: () {
-                          String email = _emailController.text;
-                          String password = _passwordController.text;
-                          print("Login: $email, $password");
-                        },
-                        child: Ink(
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Colors.blue, Colors.purple],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: const Text(
-                              "Login",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+
+                  // Email field
+                  _buildTextField(
+                    controller: _emailController,
+                    hintText: "Email",
+                    icon: Icons.email_outlined,
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Password field
+                  _buildTextField(
+                    controller: _passwordController,
+                    hintText: "Password",
+                    icon: Icons.lock_outline,
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 30),
+
+                  // Gradient Login Button
+                  SizedBox(
+                    width: 220, // fixed width like Signup button
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-
-                    // Signup link
-                    TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const SignupScreen(),
-                          ),
-                        );
+                        String email = _emailController.text;
+                        String password = _passwordController.text;
+                        print("Login: $email, $password");
                       },
-                      child: const Text(
-                        "Don't have an account? Sign Up",
-                        style: TextStyle(color: Colors.blueAccent),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF6094EA), Color(0xFFF02FC2)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: const Text(
+                            "Login",
+                            style: TextStyle(
+                              fontFamily: 'ComicSansMS',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Signup link
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const SignupScreen()),
+                      );
+                    },
+                    child: const Text(
+                      "Don't have an account? Sign Up",
+                      style: TextStyle(
+                        fontFamily: 'ComicSansMS',
+                        color: Colors.yellowAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -145,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Reusable TextField
+  // Reusable TextField with purple style
   Widget _buildTextField({
     required TextEditingController controller,
     required String hintText,
@@ -155,17 +153,19 @@ class _LoginScreenState extends State<LoginScreen> {
     return TextField(
       controller: controller,
       obscureText: obscureText,
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        prefixIcon: Icon(icon),
+        prefixIcon: Icon(icon, color: Colors.white),
         hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.white70),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.50), // <-- transparent
+        fillColor: Colors.deepPurpleAccent.withOpacity(0.7),
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 16,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide.none,
         ),
       ),
