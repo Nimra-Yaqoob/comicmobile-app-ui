@@ -1,4 +1,9 @@
+import 'package:comic_moobile/widgets/gradient_icon_button.dart';
 import 'package:flutter/material.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/gradient_button.dart';
+import '../widgets/title_text.dart';
+import '../utils/validators.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -8,6 +13,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -17,7 +23,6 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -26,197 +31,109 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
           ),
-          // Dark overlay
           Container(color: Colors.black.withOpacity(0.4)),
           Center(
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Title
-                    Text(
-                      'Join the Fun!',
-                      style: TextStyle(
-                        fontFamily: 'ComicSansMS',
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.yellowAccent,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 4.0,
-                            color: Colors.black54,
-                            offset: Offset(2, 2),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const TitleText('Join the Fun!'),
+                      const SizedBox(height: 40),
+
+                      CustomTextField(
+                        controller: _usernameController,
+                        hintText: 'Username',
+                        validator: Validators.validateUsername,
+                      ),
+                      const SizedBox(height: 20),
+                      CustomTextField(
+                        controller: _emailController,
+                        hintText: 'Email',
+                        validator: Validators.validateEmail,
+                      ),
+                      const SizedBox(height: 20),
+                      CustomTextField(
+                        controller: _passwordController,
+                        hintText: 'Password',
+                        obscureText: true,
+                        validator: Validators.validatePassword,
+                      ),
+                      const SizedBox(height: 30),
+
+                      GradientButton(
+                        text: 'Sign Up',
+                        width: 220,
+                        height: 50,
+                        gradientColors: [Color(0xFF6094EA), Color(0xFFF02FC2)],
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            String username = _usernameController.text;
+                            String email = _emailController.text;
+                            String password = _passwordController.text;
+                            print("Sign Up: $username, $email, $password");
+                          } else {
+                            print("Validation failed");
+                          }
+                        },
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          GradientIconButton(
+                            icon: Icons.apple,
+                            gradientColors: [
+                              Color(0xFF6094EA),
+                              Color(0xFFF02FC2),
+                            ],
+                          ),
+                          SizedBox(width: 20),
+                          GradientIconButton(
+                            icon: Icons.g_mobiledata,
+                            gradientColors: [
+                              Color(0xFF6094EA),
+                              Color(0xFFF02FC2),
+                            ],
+                          ),
+                          SizedBox(width: 20),
+                          GradientIconButton(
+                            icon: Icons.facebook,
+                            gradientColors: [
+                              Color(0xFF6094EA),
+                              Color(0xFFF02FC2),
+                            ],
                           ),
                         ],
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 40),
 
-                    // Username field
-                    _buildTextField(
-                      controller: _usernameController,
-                      hintText: 'Username',
-                    ),
+                      const SizedBox(height: 20),
 
-                    SizedBox(height: 20),
-
-                    // Email field
-                    _buildTextField(
-                      controller: _emailController,
-                      hintText: 'Email',
-                    ),
-
-                    SizedBox(height: 20),
-
-                    // Password field
-                    _buildTextField(
-                      controller: _passwordController,
-                      hintText: 'Password',
-                      obscureText: true,
-                    ),
-
-                    SizedBox(height: 30),
-
-                    // Gradient Sign Up button
-                    SizedBox(
-                      width: 220,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
+                      TextButton(
                         onPressed: () {
-                          String username = _usernameController.text;
-                          String email = _emailController.text;
-                          String password = _passwordController.text;
-                          print("Sign Up: $username, $email, $password");
+                          Navigator.pop(context);
                         },
-                        child: Ink(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Color(0xFF6094EA), Color(0xFFF02FC2)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                fontFamily: 'ComicSansMS',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
+                        child: const Text(
+                          "Already have an account? Login",
+                          style: TextStyle(
+                            fontFamily: 'ComicSansMS',
+                            color: Colors.yellowAccent,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ),
-
-                    SizedBox(height: 20),
-
-                    // Social login icons with gradient outline
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _gradientOutlineIconButton(Icons.apple, [
-                          Color(0xFF6094EA),
-                          Color(0xFFF02FC2),
-                        ]),
-                        SizedBox(width: 20),
-                        _gradientOutlineIconButton(Icons.g_mobiledata, [
-                          Color(0xFF6094EA),
-                          Color(0xFFF02FC2),
-                        ]),
-                        SizedBox(width: 20),
-                        _gradientOutlineIconButton(Icons.facebook, [
-                          Color(0xFF6094EA),
-                          Color(0xFFF02FC2),
-                        ]),
-                      ],
-                    ),
-
-                    SizedBox(height: 20),
-
-                    // Login redirect
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        "Already have an account? Login",
-                        style: TextStyle(
-                          fontFamily: 'ComicSansMS',
-                          color: Colors.yellowAccent,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  // Purple style TextField
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    bool obscureText = false,
-  }) {
-    return TextField(
-      controller: controller,
-      obscureText: obscureText,
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white70),
-        filled: true,
-        fillColor: Colors.deepPurpleAccent.withOpacity(0.7),
-        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide.none,
-        ),
-      ),
-    );
-  }
-
-  // Social icon with thin gradient outline
-  Widget _gradientOutlineIconButton(IconData icon, List<Color> gradientColors) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: LinearGradient(
-          colors: gradientColors,
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(3), // thickness of gradient border
-        child: Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.black.withOpacity(0.7), // inner circle
-          ),
-          child: Icon(icon, color: Colors.white, size: 28),
-        ),
       ),
     );
   }
