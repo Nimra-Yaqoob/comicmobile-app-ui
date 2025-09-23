@@ -1,3 +1,4 @@
+import 'package:comic_moobile/Screens/manga_screen.dart';
 import 'package:flutter/material.dart';
 import 'manga_card.dart';
 
@@ -8,12 +9,12 @@ class TrendingManga extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 "Trending Manga",
                 style: TextStyle(
                   color: Colors.black,
@@ -21,7 +22,20 @@ class TrendingManga extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Icon(Icons.more_horiz, color: Colors.black, size: 20),
+
+              IconButton(
+                icon: const Icon(
+                  Icons.more_horiz,
+                  color: Colors.black,
+                  size: 20,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => MangaScreen()),
+                  );
+                },
+              ),
             ],
           ),
         ),

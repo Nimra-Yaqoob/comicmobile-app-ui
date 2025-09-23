@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Category.dart';
-import '../ProfilePage.dart'; // <-- yahan apna ProfilePage import karo
+import '../ProfilePage.dart';
 
 class DashboardHeader extends StatelessWidget {
   const DashboardHeader({super.key});

@@ -1,3 +1,4 @@
+import 'package:comic_moobile/Dashboard.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/gradient_button.dart';
@@ -60,7 +61,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_formKey.currentState!.validate()) {
                           String email = _emailController.text;
                           String password = _passwordController.text;
+
                           print("Login: $email, $password");
+
+                          // ✅ Navigate to Dashboard
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DashboardScreen(),
+                            ),
+                          );
                         } else {
                           print("Validation failed");
                         }
