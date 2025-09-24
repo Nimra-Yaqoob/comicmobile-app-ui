@@ -34,6 +34,7 @@ class MangaListTile extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,9 +45,18 @@ class MangaListTile extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                 ),
+                Text(
+                  "Next Chapter: ${manga['chapter']}",
+                  style: const TextStyle(
+                    color: Colors.deepPurple,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+
+                const SizedBox(height: 2),
+
                 const Text(
                   "From MangaPoisk",
                   style: TextStyle(color: Colors.grey, fontSize: 12),
@@ -54,6 +64,7 @@ class MangaListTile extends StatelessWidget {
               ],
             ),
           ),
+
           Column(
             children: [
               const DownloadButton(),
